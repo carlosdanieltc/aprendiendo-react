@@ -1,31 +1,30 @@
 import './App.css'
-import withResults from './mocks/with-results.json'
-import withoutResults from './mocks/with-results.json'
 import {Movies} from './components/Movies'
+import { useMovies } from './hooks/useMovies'
 
 function App() {
 
-  const movies = withResults.Search
+  const {movies} = useMovies()
 
-  const mappedMovies = movies?.map(movie => ({
-    id: movie.imdbID,
-    title: movie.Title,
-    year: movie.Year,
-    poster: movie.Poster
-  }))
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const fields = new window.FormData(event.target)
+    const query =  fields.get('query')
+    console.log(query)
+  }
 
   return (
     <div className='page'>
       <header>
         <h1>Buscador de películas</h1>
-        <form className='form'>
-          <input type="text" placeholder='Avengers, Star Wars, Matrix...'/>
+        <form className='form' onSubmit={handleSubmit}>
+          <input name='query' type="text" placeholder='Avengers, Star Wars, Matrix...'/>
           <button type='submit'>Buscar</button>
         </form>
       </header>
 
       <main>
-        <Movies movies={mappedMovies}/>  
+        <Movies movies={movies}/>  
       </main>
     </div>
   )
