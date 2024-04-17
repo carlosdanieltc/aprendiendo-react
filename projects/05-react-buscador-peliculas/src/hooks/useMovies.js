@@ -24,12 +24,11 @@ export function useMovies({ search, sort }) {
     }
   }, [])
 
-
-  // const sortedMoviesByYear = useMemo(() => {
-  //   return sort 
-  //     ? [...movies].sort((a,b) => b.year - a.year)
-  //     : movies
-  // }, [sort, movies])
+  const sortedMoviesByYear = useMemo(() => {
+    return sort 
+      ? [...movies].sort((a,b) => b.year - a.year)
+      : movies
+  }, [sort, movies])
 
   const sortedMoviesByTitle = useMemo(() => {
     return sort
