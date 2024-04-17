@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useMemo, useEffect } from 'react'
 import { searchMovies } from '../services/movies.js'
 
-export function useMovies ({ search }) {
+export function useMovies ({ search, sort }) {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -24,5 +24,19 @@ export function useMovies ({ search }) {
     }
   }
 
-  return { movies, getMovies, loading }
+  // const sortedMoviesByYear = sort 
+  //   ? [...movies].sort((a,b) => b.year - a.year)
+  //   : movies
+
+  // const sortedMoviesByTtitle = sort 
+  //   ? [...movies].sort((a,b) => a.title.localeCompare(b.title))
+  //   : movies //localeCompare sirve para comparar aunque existan acentos, colocando por ejemplo una "a" junto a una "á"
+
+  const sortedMovies = useMemo(() => {
+    return sort 
+       ? [...movies].sort((a,b) => a.title.localeCompare(b.title))
+       : movies
+  }, [sort, movies])
+
+  return { movies: sortedMovies, getMovies, loading }
 }
