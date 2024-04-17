@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import {Movies} from './components/Movies'
 import { useMovies } from './hooks/useMovies'
@@ -7,7 +6,7 @@ import { useSearch } from './hooks/useSearch'
 function App() {
 
   const {search, updateSearch, error} = useSearch()
-  const {movies, getMovies} = useMovies({search})
+  const {movies, loading, getMovies} = useMovies({search})
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -37,6 +36,9 @@ function App() {
       <main>
         <Movies movies={movies}/>  
       </main>
+      {
+          loading ? <p>Cargando...</p> : <Movies movies={movies} />
+      }
     </div>
   )
 }
