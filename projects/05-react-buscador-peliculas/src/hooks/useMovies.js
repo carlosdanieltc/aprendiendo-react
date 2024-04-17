@@ -1,13 +1,13 @@
-import { useRef, useState, useMemo, useEffect } from 'react'
+import { useRef, useState, useMemo, useCallback } from 'react'
 import { searchMovies } from '../services/movies.js'
 
-export function useMovies ({ search, sort }) {
+export function useMovies({ search, sort }) {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const previousSearch = useRef(search)
 
-  const getMovies = async () => {
+  const getMovies = useCallback(async ({ search }) => {
     if (search === previousSearch.current) return
 
     try {
@@ -22,21 +22,20 @@ export function useMovies ({ search, sort }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  // const sortedMoviesByYear = sort 
-  //   ? [...movies].sort((a,b) => b.year - a.year)
-  //   : movies
 
-  // const sortedMoviesByTtitle = sort 
-  //   ? [...movies].sort((a,b) => a.title.localeCompare(b.title))
-  //   : movies //localeCompare sirve para comparar aunque existan acentos, colocando por ejemplo una "a" junto a una "á"
+  // const sortedMoviesByYear = useMemo(() => {
+  //   return sort 
+  //     ? [...movies].sort((a,b) => b.year - a.year)
+  //     : movies
+  // }, [sort, movies])
 
-  const sortedMovies = useMemo(() => {
-    return sort 
-       ? [...movies].sort((a,b) => a.title.localeCompare(b.title))
-       : movies
+  const sortedMoviesByTitle = useMemo(() => {
+    return sort
+      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+      : movies
   }, [sort, movies])
 
-  return { movies: sortedMovies, getMovies, loading }
+  return { movies: sortedMoviesByTitle, getMovies, loading }
 }

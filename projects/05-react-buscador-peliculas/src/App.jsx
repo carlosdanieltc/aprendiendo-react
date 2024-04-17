@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import {Movies} from './components/Movies'
 import { useMovies } from './hooks/useMovies'
@@ -11,7 +11,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    getMovies()
+    getMovies({search})
   }
 
   const handleSort = () => {
@@ -21,6 +21,10 @@ function App() {
   const handleChange = (event) => {
     updateSearch(event.target.value)
   }
+
+  useEffect(() => {
+    console.log("new getMovies recivied")
+  }, [getMovies])
 
   return (
     <div className='page'>
