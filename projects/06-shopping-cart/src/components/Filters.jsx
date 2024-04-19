@@ -18,7 +18,7 @@ export function Filters ({onChange}){
         //REVISAR
         onChange( prevState => ({
             ...prevState,
-            minPrice: event.target.value
+            category: event.target.value
         }))
     }
 
