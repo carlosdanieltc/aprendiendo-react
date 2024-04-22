@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Products } from "./components/Products"
 import { products as initialProducts} from './mocks/products'
 import { Header } from "./components/Header"
+import { Footer } from "./components/Footer"
 
 function useFilters(){
 
@@ -35,6 +36,7 @@ function App() {
     <>
       <Header changeFilters={setFilters}></Header>
       <Products products={filteredProducts}/>
+      <Footer></Footer>
     </>
   )
 }
