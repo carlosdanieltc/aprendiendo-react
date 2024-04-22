@@ -1,6 +1,6 @@
 import './Footer.css'
 
-export function Footer () {
+export function Footer ({filters}) {
   // const { filters } = useFilters()
 
   return (
