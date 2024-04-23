@@ -8,14 +8,14 @@ import { useFilters } from "./hooks/useFilters"
 function App() {
 
   const [products] = useState(initialProducts)
-  const { filters, filterProducts} = useFilters()
+  const {filterProducts} = useFilters()
   const filteredProducts = filterProducts(products)
 
   return (
     <>
       <Header></Header>
       <Products products={filteredProducts}/>
-      <Footer filters={filters}></Footer>
+      <Footer></Footer>
     </>
   )
 }
