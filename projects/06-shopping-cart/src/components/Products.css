@@ -27,6 +27,10 @@
     color: #fff;
     padding: 1rem;
   }
+
+  .products li div button {
+    color: white;
+  }
   
   .products h3 {
     margin: 0;
