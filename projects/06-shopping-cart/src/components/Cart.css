@@ -54,3 +54,7 @@
     height: 100%;
     display: block;
   }
+
+  button{
+    color: white;
+  }
