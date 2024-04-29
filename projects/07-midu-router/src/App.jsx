@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
-const NAVIGATION_EVENT = 'pushstate'
+import { EVENTS } from './consts'
 
 function navigate(href){
   window.history.pushState({},'',href)
   //crear evento personalizado para avisar que hemos cambiado la url
-  const navigationEvent = new Event(NAVIGATION_EVENT)
+  const navigationEvent = new Event(EVENTS.PUSHSTATE)
 
   window.dispatchEvent(navigationEvent)
 }
@@ -42,10 +41,13 @@ function App() {
       setCurrentPath(window.location.pathname)
     }
 
-    window.addEventListener(NAVIGATION_EVENT, onLocationChange)
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
+    window.addEventListener(EVENTS.POPSTATE, onLocationChange) //popstate es el evento lanzado al regresar a la pagina anterior por medio del mismo navegador
 
     return () => {
-      window.removeEventListener(NAVIGATION_EVENT, onLocationChange)
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
+      window.removeEventListener(EVENTS.POPSTATE, onLocationChange)
+
     }
   },[])
 
