@@ -12,6 +12,10 @@ const routes = [
   {
     path: '/about',
     Component: AboutPage
+  },
+  {
+    path: '/search/:query',
+    Component: ({routeParams}) => <h1>Has buscado {routeParams.query}</h1>
   }
 ]
 
