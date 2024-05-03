@@ -3,6 +3,7 @@ import HomePage from './pages/Home'
 import AboutPage from './pages/About'
 import { Router } from './Router'
 import Page404 from './pages/404'
+import SearchPage from './pages/Search'
 
 const routes = [
   {
@@ -15,7 +16,7 @@ const routes = [
   },
   {
     path: '/search/:query',
-    Component: ({routeParams}) => <h1>Has buscado {routeParams.query}</h1>
+    Component: SearchPage
   }
 ]
 
