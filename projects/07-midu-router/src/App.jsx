@@ -1,25 +1,28 @@
+import { lazy, Suspense } from 'react'
 import './App.css'
-import HomePage from './pages/Home'
-import AboutPage from './pages/About'
 import { Router } from './Router'
-import Page404 from './pages/404'
 import SearchPage from './pages/Search'
 import { Route } from './Route'
 
-const routes = [
-  {
-    path: '/',
-    Component: HomePage
-  },
-  {
-    path: '/about',
-    Component: AboutPage
-  },
-  {
-    path: '/search/:query',
-    Component: SearchPage
-  }
-]
+const LazyAboutPage = lazy (() => import('./pages/About')) //import dinámico (Mejor opción para rendimiento)
+const LazyHomePage = lazy (() => import('./pages/Home')) //import dinámico (Mejor opción para rendimiento)
+const Lazy404Page = lazy (() => import('./pages/404')) //import dinámico (Mejor opción para rendimiento)
+
+// const routes = [
+//   {
+//     path: '/',
+//     Component: HomePage
+//   },
+//   {
+//     path: '/about',
+//     Component: AboutPage
+//   },
+//   {
+//     path: '/search/:query',
+//     Component: SearchPage
+//   }
+// ]
+
 const appRoutes = [
   {
     path: '/search/:query',
@@ -29,13 +32,15 @@ const appRoutes = [
 
 
 function App() {
-  
+
   return (
     <main>
-      <Router routes={appRoutes} defaultComponent={Page404}>
-        <Route path='/' Component={HomePage}></Route>
-        <Route path='/about' Component={AboutPage}></Route>
-      </Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Router routes={appRoutes} defaultComponent={Lazy404Page}>
+          <Route path='/' Component={LazyHomePage}></Route>
+          <Route path='/about' Component={LazyAboutPage}></Route>
+        </Router>
+      </Suspense>
     </main>
   )
 }
