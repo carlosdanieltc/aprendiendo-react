@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { Component, lazy, Suspense } from 'react'
 import './App.css'
 import { Router } from './Router'
 import Page404 from './pages/404'
@@ -24,6 +24,10 @@ const LazyHomePage = lazy (() => import('./pages/Home')) //import dinámico (Mej
 // ]
 
 const appRoutes = [
+  {
+    path: '/:lang/about',
+    Component: LazyAboutPage
+  },
   {
     path: '/search/:query',
     Component: SearchPage
