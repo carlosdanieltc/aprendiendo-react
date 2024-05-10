@@ -8,7 +8,7 @@ import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 
 function App() {
-  const {fromLanguage, toLanguage, interchangeLanguages, setFromLanguage} = useStore()
+  const {fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage} = useStore()
 
   return (
     <Container fluid>
@@ -16,14 +16,24 @@ function App() {
 
       <Row>
         <Col>
-          <LanguageSelector></LanguageSelector>
+          <LanguageSelector 
+            type='from'
+            value= {fromLanguage}
+            onChange={setFromLanguage}>
+          </LanguageSelector>
+          {fromLanguage}
         </Col>
         <Col>
           <Button variant='Link' disabled={fromLanguage === AUTO_LANGUAGE} 
           onClick={interchangeLanguages}><ArrowsIcon/></Button>
         </Col>
         <Col>
-        <LanguageSelector></LanguageSelector>
+        <LanguageSelector 
+          type='to'
+          value={toLanguage}
+          onChange={setToLanguage}>
+        </LanguageSelector>
+        {toLanguage}
         </Col>
       </Row>
     </Container>
