@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { Container, Row, Col, Button, Form, Stack } from 'react-bootstrap';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,6 +11,17 @@ import { TextArea } from './components/TextArea';
 
 function App() {
   const { loading, fromLanguage, toLanguage, fromText, result, interchangeLanguages, setFromLanguage, setToLanguage, setFromText, setResult} = useStore()
+
+  // useEffect(() => {
+  //   if (debouncedFromText === '') return
+
+  //   translate({ fromLanguage, toLanguage, text: debouncedFromText })
+  //     .then(result => {
+  //       if (result == null) return
+  //       setResult(result)
+  //     })
+  //     .catch(() => { setResult('Error') })
+  // }, [debouncedFromText, fromLanguage, toLanguage])
 
   return (
     <Container fluid>
