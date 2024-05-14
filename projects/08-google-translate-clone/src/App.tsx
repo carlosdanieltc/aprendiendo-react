@@ -8,20 +8,21 @@ import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { SectionType } from './types.d';
 import { TextArea } from './components/TextArea';
+import { translate } from './services/translate';
 
 function App() {
   const { loading, fromLanguage, toLanguage, fromText, result, interchangeLanguages, setFromLanguage, setToLanguage, setFromText, setResult} = useStore()
 
-  // useEffect(() => {
-  //   if (debouncedFromText === '') return
+  useEffect(() => {
+    if (fromText === '') return
 
-  //   translate({ fromLanguage, toLanguage, text: debouncedFromText })
-  //     .then(result => {
-  //       if (result == null) return
-  //       setResult(result)
-  //     })
-  //     .catch(() => { setResult('Error') })
-  // }, [debouncedFromText, fromLanguage, toLanguage])
+    translate()
+      .then(result => {
+        if (result == null) return
+        setResult(result)
+      })
+      .catch(() => { setResult('Error') })
+  }, [fromText])
 
   return (
     <Container fluid>
