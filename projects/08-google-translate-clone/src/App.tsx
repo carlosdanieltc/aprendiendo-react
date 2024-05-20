@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     if (fromText === '') return
 
-    translate()
+    translate({fromLanguage,toLanguage, text: fromText})
       .then(result => {
         if (result == null) return
         setResult(result)

@@ -5,12 +5,18 @@
   align-items: center;
   width: 100%;
   max-width: 800px;
+  background-color: #27272a;
+}
+
+h1{
+  color: white;
 }
 
 main {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 form {
@@ -37,6 +43,7 @@ form {
 
 .movie h3, .movie p {
   margin: 0;
+  color: white;
 }
 
 .movie img {

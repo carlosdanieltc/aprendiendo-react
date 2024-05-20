@@ -24,13 +24,15 @@ export function useMovies({ search, sort }) {
     }
   }, [])
 
-  const sortedMoviesByYear = useMemo(() => {
-    return sort 
-      ? [...movies].sort((a,b) => b.year - a.year)
-      : movies
-  }, [sort, movies])
+  // const sortedMoviesByYear = useMemo(() => {
+  //   if (movies == null) return
+  //   return sort 
+  //     ? [...movies].sort((a,b) => b.year - a.year)
+  //     : movies
+  // }, [sort, movies])
 
   const sortedMoviesByTitle = useMemo(() => {
+    if (movies == null) return
     return sort
       ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
       : movies

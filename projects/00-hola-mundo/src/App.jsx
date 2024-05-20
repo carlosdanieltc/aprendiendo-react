@@ -1,6 +1,5 @@
 import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
-import { useState } from 'react'
 
 const users = [
     {

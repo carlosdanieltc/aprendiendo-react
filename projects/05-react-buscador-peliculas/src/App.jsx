@@ -34,7 +34,7 @@ function App() {
   return (
     <div className='page'>
       <header>
-        <h1>Buscador de películas</h1>
+        <h1 style={{color:'white'}}>Buscador de películas</h1>
         <form className='form' onSubmit={handleSubmit}>
           <input
             style={{
